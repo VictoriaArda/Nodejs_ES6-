@@ -12,9 +12,9 @@ First, you prompt the user for their github username and favorite color. It take
     5. It then generates the index.html file and converts it to resume.pdf.
 
 # Contact Info
-Victoria Arda
-ardavictoria@gmail.com
-github: VictoriaArda
+* Victoria Arda
+* ardavictoria@gmail.com
+* github: VictoriaArda
 
 # Link to Site
 

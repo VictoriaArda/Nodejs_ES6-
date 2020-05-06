@@ -50,7 +50,7 @@ npm test
 
 ## Questions
 
-<img src="https://avatars3.githubusercontent.com/u/50091582?v=4" alt="avatar" style="border-radius: 16px" width="30" />
+<img src="https://avatars3.githubusercontent.com/u/50091582?v=4" alt="avatar" style="border-radius: 40px" width="50" />
 
 If you have any questions about the repo, open an issue or contact [VictoriaArda](https://api.github.com/users/VictoriaArda) directly at null.
 

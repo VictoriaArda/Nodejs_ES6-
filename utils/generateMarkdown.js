@@ -1,28 +1,28 @@
 function generateProjectUrl(github, title) {
-  const kebabCaseTitle = title.toLowerCase().split(" ").join("-");
-  return `https://github.com/${github}/${kebabCaseTitle}`;
+    const kebabCaseTitle = title.toLowerCase().split(" ").join("-");
+    return `https://github.com/${github}/${kebabCaseTitle}`;
 }
 
 function renderLicenseBadge(license, github, title) {
-  if (license !== "None") {
-    return `[![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)](${generateProjectUrl(github, title)})`
-  }
-  return ''
+    if (license !== "None") {
+        return `[![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)](${generateProjectUrl(github, title)})`
+    }
+    return ''
 }
 
 function renderLicenseSection(license) {
-  if (license !== "None") {
-    return (
-      `## License
+    if (license !== "None") {
+        return (
+            `## License
 
 This project is licensed under the ${license} license.`
-    )
-  }
-  return ''
+        )
+    }
+    return ''
 }
 
 function generateMarkdown(data) {
-  return `
+    return `
 # ${data.title}
 ${renderLicenseBadge(data.license, data.github, data.title)}
 
@@ -75,8 +75,15 @@ ${data.test}
 <img src="${data.avatar_url}" alt="avatar" style="border-radius: 16px" width="30" />
 
 If you have any questions about the repo, open an issue or contact [${data.github}](${data.url}) directly at ${data.email}.
+`
+    $ {
+        data.contributing
+    }##
+    Sample Usage
+        ![](node_use.gif)
 
-`;
+
+    ;
 }
 
 module.exports = generateMarkdown;

@@ -1,6 +1,6 @@
 
-# Nodejs_ES6-
-[![GitHub license](https://img.shields.io/badge/license-APACHE 2.0-blue.svg)](https://github.com/VictoriaArda/nodejs_es6-)
+#  Unit 09 Node.js and ES6+ Homework: Good README Generator
+[![GitHub license](https://img.shields.io/badge/license-APACHE 2.0-blue.svg)](https://github.com/VictoriaArda/-unit-09-node.js-and-es6+-homework:-good-readme-generator)
 
 ## Description
 
@@ -30,7 +30,7 @@ npm i
 
 ## Usage
 
-My repo will create README.md 
+This repo will create README.md automaticly 
 
 ## License
 
@@ -38,7 +38,7 @@ This project is licensed under the APACHE 2.0 license.
   
 ## Contributing
 
-they need my approval
+need my permission
 
 ## Tests
 
@@ -50,7 +50,7 @@ npm test
 
 ## Questions
 
-<img src="https://avatars3.githubusercontent.com/u/50091582?v=4" alt="avatar" style="border-radius: 40px" width="50" />
+<img src="https://avatars3.githubusercontent.com/u/50091582?v=4" alt="avatar" style="border-radius: 16px" width="30" />
 
 If you have any questions about the repo, open an issue or contact [VictoriaArda](https://api.github.com/users/VictoriaArda) directly at null.
 

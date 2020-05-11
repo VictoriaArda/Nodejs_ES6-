@@ -39,3 +39,10 @@ Email: null
 Location:Carlstadt, New Jersey, USA
 
 GitHub: https://github.com/VictoriaArda
+
+
+## Terminal GIF
+![](screen.GIF)
+
+## PDF File 
+![](generateReadme.PNG)

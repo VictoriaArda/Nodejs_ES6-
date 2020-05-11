@@ -1,56 +1,41 @@
 
-#  Unit 09 Node.js and ES6+ Homework: Good README Generator
-[![GitHub license](https://img.shields.io/badge/license-APACHE 2.0-blue.svg)](https://github.com/VictoriaArda/-unit-09-node.js-and-es6+-homework:-good-readme-generator)
+# Good README Generator 
+Create a command-line application that dynamically generates a README.md from a user's input. The App with the following commend node index.js The user will be prompted for their GITHUB username, which willbe used to make a call to their email and profile image. They will then be prompted with questions about their project.
 
-## Description
+* [Installation](#Installation)
 
-Create a command-line application that dynamically generates a README.md from a user's input.
+* [Instructions](#Instructions)
 
-## Table of Contents 
+* [License](#License)
 
-* [Installation](#installation)
+* [Contributors](#Contributors)
 
-* [Usage](#usage)
+* [Author](#Author)
 
-* [License](#license)
-
-* [Contributing](#contributing)
-
-* [Tests](#tests)
-
-* [Questions](#questions)
-
+* [Tests](#Tests)
 ## Installation
-
-To install necessary dependencies, run the following command:
-
+npm install axios 3. npm install inquirer
+## Instructions
+User is prompt to answer questions once the questionnaire is completed, a readme file will be generate readme.md
 ```
-npm i
+user runs node index.js and the application starts
 ```
-
-## Usage
-
-This repo will create README.md automaticly 
-
-## License
-
-This project is licensed under the APACHE 2.0 license.
-  
-## Contributing
-
-need my permission
-
+## License 
+This project is licensed under the MIT - see the MIT.md file for details
+## Contributors
+undefined
+            
+ <img src="https://avatars3.githubusercontent.com/u/50091582?v=4" alt="drawing" width="150" display="inline"/> VictoriaArda  GitHubLink: https://github.com/VictoriaArda
 ## Tests
+running jest
+## Author 
 
-To run tests, run the following command:
+![ProfileImage](https://avatars3.githubusercontent.com/u/50091582?v=4)
 
-```
-npm test
-```
+**VictoriaArda**
 
-## Questions
+Email: null
 
-<img src="https://avatars3.githubusercontent.com/u/50091582?v=4" alt="avatar" style="border-radius: 16px" width="30" />
+Location:Carlstadt, New Jersey, USA
 
-If you have any questions about the repo, open an issue or contact [VictoriaArda](https://api.github.com/users/VictoriaArda) directly at null.
-
+GitHub: https://github.com/VictoriaArda

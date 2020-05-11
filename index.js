@@ -1,69 +1,127 @@
-const fs = require("fs");
-const path = require("path");
 const inquirer = require("inquirer");
-const api = require("./utils/api");
-const generateMarkdown = require("./utils/generateMarkdown");
-var pdf = require("pdf-creator-node");
-
-const questions = [{
-        type: "input",
-        name: "github",
-        message: "What is your GitHub username?"
-    },
-    {
-        type: "input",
-        name: "title",
-        message: "What is your project's name?"
-    },
-    {
-        type: "input",
-        name: "description",
-        message: "Please write a short description of your project"
-    },
-    {
-        type: "list",
-        name: "license",
-        message: "What kind of license should your project have?",
-        choices: ["MIT", "APACHE 2.0", "GPL 3.0", "BSD 3", "None"]
-    },
-    {
-        type: "input",
-        name: "installation",
-        message: "What command should be run to install dependencies?",
-        default: "npm i"
-    },
-    {
-        type: "input",
-        name: "test",
-        message: "What command should be run to run tests?",
-        default: "npm test"
-    },
-    {
-        type: "input",
-        name: "usage",
-        message: "What does the user need to know about using the repo?",
-    },
-    {
-        type: "input",
-        name: "contributing",
-        message: "What does the user need to know about contributing to the repo?",
+const axios = require("axios");
+const fs = require('fs');
+const path = require('path');
+async function main() {
+    console.log(`starting`);
+    const userResponse = await inquirer
+        .prompt([{
+                type: "input",
+                message: "What is your GitHub user name?",
+                name: "username"
+            },
+            {
+                type: "input",
+                message: "What is your Project Tittle?",
+                name: "projectTittle"
+            },
+            {
+                type: "input",
+                message: "Provide detail description",
+                name: "projectDescription"
+            },
+            {
+                type: "input",
+                message: "What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.",
+                name: "installationProcess"
+            },
+            {
+                type: "input",
+                message: "Provide instructions for use.",
+                name: "instruction"
+            },
+            {
+                type: "input",
+                message: "Provide instructions examples for use.",
+                name: "instructionExample"
+            },
+            {
+                type: "input",
+                message: "provide License name ",
+                name: "licenseName"
+            },
+            {
+                type: "input",
+                message: "provide License url ",
+                name: "licenseUrl"
+            },
+            {
+                type: "input",
+                message: "please enter git hub user names of the contributor if any (If there are mulitple contributor, seperate names with comma and no space! )",
+                name: "contributorsGitUserName"
+            },
+            {
+                type: "input",
+                message: "Provide examples on how to run tests.",
+                name: "tests"
+            }
+        ]);
+    console.log(`starting`);
+    console.log(userResponse);
+    const gitUsername = userResponse.username;
+    const projectTittle = userResponse.projectTittle;
+    const projectDescription = userResponse.projectDescription;
+    const installationProcess = userResponse.installationProcess;
+    const instruction = userResponse.instruction;
+    const instructionExample = userResponse.instructionExample;
+    const licenseName = userResponse.licenseName;
+    const licenseUrl = userResponse.licenseUrl;
+    const contributorUserNames = userResponse.contributorsGitUserName;
+    const tests = userResponse.tests;
+    // fetching data from git
+    // user
+    const gitResponse = await axios.get(`https://api.github.com/users/${gitUsername}`);
+    const gitData = gitResponse.data;
+    const gitName = gitData.login;
+    const gitEmail = gitData.email;
+    const gitlocation = gitData.location;
+    const gitUrl = gitData.html_url;
+    const gitProfileImage = gitData.avatar_url;
+    // contributor
+    const contributorUserNamesArray = contributorUserNames.split(",");
+    console.log(contributorUserNamesArray);
+    // const  = listOfContributorsUserNames.
+    // contributorsGitUserName
+    var resultContributor;
+    for (i = 0; i < contributorUserNamesArray.length; i++) {
+        var contributorsGitUserName = contributorUserNamesArray[i]
+        const gitResponse2 = await axios.get(`https://api.github.com/users/${contributorsGitUserName}`);
+        var gitContribuProfileImage = gitResponse2.data.avatar_url;
+        var gitContribuUrl = gitResponse2.data.html_url;
+        var gitContribuEmail = gitResponse2.data.email;
+        var resultContributor = resultContributor + (`
+            \n <img src="${gitContribuProfileImage}" alt="drawing" width="150" display="inline"/> ${contributorsGitUserName}  GitHubLink: ${gitContribuUrl}`);
     }
-];
-
-function writeToFile(fileName, data) {
-    return fs.writeFileSync(path.join(process.cwd(), fileName), data);
+    var result = (`
+# ${projectTittle} 
+${projectDescription}
+\n* [Installation](#Installation)
+\n* [Instructions](#Instructions)
+\n* [License](#License)
+\n* [Contributors](#Contributors)
+\n* [Author](#Author)
+\n* [Tests](#Tests)
+## Installation
+${installationProcess}
+## Instructions
+${instruction}
+\`\`\`
+${instructionExample}
+\`\`\`
+## License 
+This project is licensed under the ${licenseName} - see the ${licenseUrl} file for details
+## Contributors
+${resultContributor}
+## Tests
+${tests}
+## Author 
+\n![ProfileImage](${gitProfileImage})
+\n**${gitName}**
+\nEmail: ${gitEmail}
+\nLocation:${gitlocation}
+\nGitHub: ${gitUrl}
+`)
+    var writeResult = fs.writeFileSync(path.join(__dirname, '../Nodejs_ES6-', 'README.md'), result)
+    console.log("file generated....")
 }
-
-function init() {
-    inquirer.prompt(questions).then((inquirerResponses) => {
-        console.log("Searching...");
-
-        api
-            .getUser(inquirerResponses.github)
-            .then(({ data }) => {
-                writeToFile("README.md", generateMarkdown({...inquirerResponses, ...data }));
-            })
-    })
-}
-
-init();
+main();
